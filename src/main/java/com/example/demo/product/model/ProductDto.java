@@ -1,6 +1,6 @@
 package com.example.demo.product.model;
 
-import com.example.demo.product.enums.PrintProducts;
+import com.example.demo.product.enums.PrintProduct;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
@@ -16,9 +16,10 @@ public class ProductDto {
 
     private Long id;
     @NotBlank(message = "Укажите тип печатной продукции")
-    private PrintProducts printProducts;
+    private PrintProduct printProduct;
     @NotBlank(message = "Имя печатной продукции не может быть пустым")
     private String name;
+    @NotBlank(message = "Добавьте описание продукта")
     private String description;
     @NotBlank(message = "Укажите автора")
     private String author;

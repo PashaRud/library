@@ -1,6 +1,6 @@
 package com.example.demo.product.model;
 
-import com.example.demo.product.enums.PrintProducts;
+import com.example.demo.product.enums.PrintProduct;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,19 +8,20 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@ToString
 @Table(name = "PRODUCTS")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "product_id")
     private Long id;
     @Enumerated(EnumType.STRING)
-    private PrintProducts printProducts;
+    @Column(name = "print_product")
+    private PrintProduct printProduct;
     @Column(name = "product_id")
     private String name;
     @Column(name = "description")
@@ -31,6 +32,6 @@ public class Product {
     private String publishingHouse;
     @Column(name = "publication_date")
     private LocalDate publicationDate;
-    @Column(name = "count")
+    @Column(name = "quantity")
     private Long quantity;
 }

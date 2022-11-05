@@ -9,25 +9,23 @@ public class ProductMapper {
 
     public static ProductDto toProductDto(Product product) {
         return new ProductDto(product.getId(),
-                product.getPrintProducts(),
+                product.getPrintProduct(),
                 product.getName(),
                 product.getDescription(),
                 product.getAuthor(),
                 product.getPublishingHouse(),
                 product.getPublicationDate(),
-                product.getAvailable(),
-                product.getCount());
+                product.getQuantity());
     }
 
     public static Product toProduct(ProductDto productDto) {
         return new Product(productDto.getId(),
-                productDto.getPrintProducts(),
+                productDto.getPrintProduct(),
                 productDto.getName(),
                 productDto.getDescription(),
                 productDto.getAuthor(),
                 productDto.getPublishingHouse(),
                 productDto.getPublicationDate(),
-                productDto.getAvailable(),
-                productDto.getCount());
+                productDto.getQuantity());
     }
 }

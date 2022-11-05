@@ -1,5 +1,7 @@
 package com.example.demo.product.controller;
 
+import com.example.demo.product.enums.PrintProduct;
+import com.example.demo.product.enums.SortLibrary;
 import com.example.demo.product.model.ProductDto;
 import com.example.demo.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -31,15 +33,27 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductDto> findAll(@RequestParam(defaultValue = "name") String sort) {
+    public List<ProductDto> findAll(@RequestParam(defaultValue = "name") SortLibrary sort) {
         log.info("Get запрос к эндпоинту: /products. Метод: findAll с сортировкой по {}", sort);
         return productService.findAll(sort);
+    }
+
+    @GetMapping("by_type")
+    public List<ProductDto> findProductsByType(@RequestParam PrintProduct printProduct) {
+        log.info("Get запрос к эндпоинту: /products/by_type. " +
+                "Метод: findProductsByType с типом печатной продукции - {}", printProduct);
+        return productService.findProductsByType(printProduct);
+    }
+
+    @GetMapping("/search")
+    public List<ProductDto> search(@RequestParam String text) {
+        log.info("Get запрос к эндпоинту: /products/search. Метод: search. Текст поиска - {}", text);
+        return productService.search(text);
     }
 
     @PutMapping("id")
     public ProductDto update(@RequestBody ProductDto productDto,
                              @PathVariable Long id) {
-//        TODO(Сделать проверку полей, т.к. для обновления модели может передаваться только одно поле объекта)
         log.info("Patch запрос к эндпоинту: /products/id. Обновленные данные продукта: {}",
                 productDto.toString());
         return productService.update(id, productDto);
